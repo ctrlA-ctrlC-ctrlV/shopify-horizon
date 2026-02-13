@@ -1,0 +1,127 @@
+{%- doc -%}
+  Renders the collection controls bar (product count, sorting, grid density).
+  This replaces the original filters block, keeping only the non-filter controls.
+
+  @param {object} results - The collection or search results object
+  @param {number} products_count - The number of products in the collection
+  @param {string} section_id - The parent section ID
+{%- enddoc -%}
+
+{%- liquid
+  assign sort_by = results.sort_by | default: results.default_sort_by
+  if results.url
+    assign results_url = results.url
+  else
+    assign terms = results.terms | escape
+    assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+  endif
+-%}
+
+<div class="collection-controls-bar facets facets--horizontal facets-controls-wrapper spacing-style">
+  {%- comment -%} Product count {%- endcomment -%}
+  <div class="products-count-wrapper" data-testid="products-count">
+    <span title="{{ 'content.product_count' | t }}">
+      {% if products_count > 25000 %}
+        {{- 'content.item_count_cutoff' | t: count: 25000 -}}
+      {% else %}
+        {{- 'content.item_count' | t: count: products_count -}}
+      {% endif %}
+    </span>
+  </div>
+
+  {%- comment -%} Sort dropdown {%- endcomment -%}
+  <facets-form-component
+    class="facets__form-wrapper"
+    section-id="{{ section_id }}"
+    form-style="horizontal"
+  >
+    <form
+      action="{{ results_url }}"
+      id="FacetFiltersForm--{{ section_id }}-controls"
+      class="facets__form"
+      ref="facetsForm"
+    >
+      {% render 'sorting',
+        results: results,
+        sort_by: sort_by,
+        filter_style: 'horizontal',
+        suffix: 'controls',
+        sort_position: 'desktop',
+        should_use_select_on_mobile: false,
+        section_id: section_id
+      %}
+    </form>
+  </facets-form-component>
+
+  {%- comment -%} Grid density toggles {%- endcomment -%}
+  {% render 'grid-density-controls', viewport: 'desktop' %}
+</div>
+
+{%- comment -%} Mobile controls — sorting select + grid density {%- endcomment -%}
+<div class="collection-controls-bar--mobile facets-toggle facets-toggle--no-filters">
+  <div class="facets-mobile-wrapper facets-controls-wrapper facets-mobile-wrapper--multiple-controls">
+    <facets-form-component
+      section-id="{{ section_id }}"
+      id="FacetFiltersForm--{{ section_id }}-mobile-controls"
+    >
+      <form
+        action="{{ results_url }}"
+        id="FacetFiltersForm--{{ section_id }}-mobile-controls"
+        ref="facetsForm"
+      >
+        {% render 'sorting',
+          results: results,
+          sort_by: sort_by,
+          filter_style: 'horizontal',
+          sort_position: 'mobile',
+          should_use_select_on_mobile: true,
+          section_id: section_id
+        %}
+      </form>
+    </facets-form-component>
+    {% render 'grid-density-controls', viewport: 'mobile' %}
+  </div>
+</div>
+
+{% stylesheet %}
+  /* Desktop controls bar */
+  .collection-controls-bar {
+    display: none;
+
+    @media screen and (min-width: 750px) {
+      display: flex;
+      align-items: center;
+      padding-block: var(--padding-xs) var(--padding-xs);
+      grid-column: var(--centered);
+      color: rgb(var(--color-foreground-rgb) / var(--opacity-70));
+      gap: 0 var(--facets-form-horizontal-gap, 20px);
+    }
+  }
+
+  /* When sidebar is present, span the controls bar across the full row */
+  .collection-wrapper:has(.facets-sidebar) .collection-controls-bar {
+    @media screen and (min-width: 750px) {
+      grid-column: 2 / var(--full-width-column-number);
+    }
+  }
+
+  .collection-controls-bar .products-count-wrapper {
+    @media screen and (min-width: 750px) {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      height: var(--minimum-touch-target);
+    }
+  }
+
+  .collection-controls-bar .facets__form-wrapper {
+    margin-left: auto;
+  }
+
+  /* Mobile controls bar */
+  .collection-controls-bar--mobile {
+    @media screen and (min-width: 750px) {
+      display: none;
+    }
+  }
+{% endstylesheet %}

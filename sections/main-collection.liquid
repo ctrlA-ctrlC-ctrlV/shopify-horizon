@@ -33,11 +33,10 @@
   <div
     class="collection-wrapper grid gap-style{% if section.settings.product_grid_width == 'full-width' %} collection-wrapper--grid-full-width{% endif %}"
   >
-    {% content_for 'block',
-      type: 'filters',
-      id: 'filters',
+    {% render 'collection-controls-bar',
       results: collection,
-      results_size: collection.products_count
+      products_count: collection.products_count,
+      section_id: section.id
     %}
 
     {% assign products_per_page = 24 %}
@@ -150,14 +149,6 @@
   }
 
   /* --- Sidebar filter overrides --- */
-
-  /* Hide the original block's vertical filter pane when the sidebar is present,
-     keeping the top controls bar (product count, sort, grid density) visible. */
-  .collection-wrapper:has(.facets-sidebar) .facets-block-wrapper--vertical:not(.facets-sidebar):not(#filters-drawer) {
-    @media screen and (min-width: 750px) {
-      display: none;
-    }
-  }
 
   /* Add right padding to the sidebar so it doesn't sit flush against the product grid */
   .facets-sidebar {
