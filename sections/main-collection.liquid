@@ -1,4 +1,3 @@
-
 <script
   src="{{ 'results-list.js' | asset_url }}"
   type="module"
@@ -42,6 +41,8 @@
     %}
 
     {% assign products_per_page = 24 %}
+
+    {% render 'facets-sidebar', results: collection %}
 
     {% if section.settings.enable_infinite_scroll == false %}
       {% assign products_per_page = section.settings.products_per_page %}
