@@ -1,5 +1,4 @@
 
-
 <script
   src="{{ 'results-list.js' | asset_url }}"
   type="module"
@@ -31,100 +30,6 @@
   infinite-scroll="{{ section.settings.enable_infinite_scroll }}"
 >
   {% render 'skip-to-content-link', href: '#ResultsList', text: 'accessibility.skip_to_results_list' %}
-
-  <div class="grid-display-controls">
-    <span class="grid-label">Columns:</span>
-    <div class="grid-buttons">
-      <button type="button" class="grid-btn" data-col="2" aria-label="2 Columns">2</button>
-      <button type="button" class="grid-btn" data-col="3" aria-label="3 Columns">3</button>
-      <button type="button" class="grid-btn" data-col="4" aria-label="4 Columns">4</button>
-    </div>
-  </div>
-
-  <style>
-    .grid-display-controls {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 20px;
-      max-width: var(--page-width);
-      margin: 0 auto;
-    }
-    .grid-label { font-size: 14px; font-weight: bold; }
-    .grid-btn {
-      background: transparent;
-      border: 1px solid #ccc;
-      padding: 5px 12px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .grid-btn:hover, .grid-btn.active {
-      background: #000;
-      color: #fff;
-      border-color: #000;
-    }
-
-    /* Desktop Grid Overrides */
-    @media screen and (min-width: 750px) {
-      results-list[data-grid-override="2"] ul, 
-      results-list[data-grid-override="2"] .product-grid { 
-        grid-template-columns: repeat(2, 1fr) !important; 
-      }
-      results-list[data-grid-override="3"] ul, 
-      results-list[data-grid-override="3"] .product-grid { 
-        grid-template-columns: repeat(3, 1fr) !important; 
-      }
-      results-list[data-grid-override="4"] ul, 
-      results-list[data-grid-override="4"] .product-grid { 
-        grid-template-columns: repeat(4, 1fr) !important; 
-      }
-    }
-    
-    /* Hide on mobile if desired, or keep to allow column switching on mobile too */
-    @media screen and (max-width: 749px) {
-      .grid-display-controls { display: none; }
-    }
-  </style>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const resultList = document.querySelector('results-list');
-      const buttons = document.querySelectorAll('.grid-btn');
-      
-      // 1. Load saved preference
-      const savedCol = localStorage.getItem('collection-grid-cols');
-      if(savedCol) {
-        resultList.setAttribute('data-grid-override', savedCol);
-        updateActiveButton(savedCol);
-      } else {
-        // Default active state (optional, assumes 3 or 4 is default)
-        updateActiveButton('4'); 
-      }
-
-      // 2. Click Handler
-      buttons.forEach(btn => {
-        btn.addEventListener('click', function() {
-          const col = this.dataset.col;
-          
-          // Set attribute on the parent container
-          resultList.setAttribute('data-grid-override', col);
-          
-          // Save to storage
-          localStorage.setItem('collection-grid-cols', col);
-          
-          // Update visual button state
-          updateActiveButton(col);
-        });
-      });
-
-      function updateActiveButton(colValue) {
-        buttons.forEach(b => b.classList.remove('active'));
-        const activeBtn = document.querySelector(`.grid-btn[data-col="${colValue}"]`);
-        if(activeBtn) activeBtn.classList.add('active');
-      }
-    });
-  </script>
 
   <div
     class="collection-wrapper grid gap-style{% if section.settings.product_grid_width == 'full-width' %} collection-wrapper--grid-full-width{% endif %}"
