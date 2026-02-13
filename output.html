@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liquid Local Render</title>
+  <style>
+    /* Basic styles to make it look decent */
+    body { font-family: sans-serif; padding: 20px; }
+    .facets-sidebar { border: 1px solid #ccc; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Rendered Output</h1>
+  <hr>
+  <script src="/assets/facets.js" type="module" fetchpriority="low"></script>
+<script src="/assets/scrolling.js" type="module" fetchpriority="low"></script>
+
+<div
+  class="facets-block-wrapper facets-block-wrapper--vertical facets-sidebar"
+  style="--grid-column--desktop: 2 / var(--facets-vertical-col-width);"
+>
+  <div class="facets facets--vertical">
+    <facets-form-component class="facets__form-wrapper" section-id="sidebar-filter" form-style="vertical">
+      <form id="FacetFiltersForm--sidebar-filter-sidebar" class="facets__form" action="/collections/all"><div class="facets__wrapper">
+
+<accordion-custom
+  class="facets__item"
+  
+
+  
+    open
+    open-by-default-on-mobile
+    open-by-default-on-desktop
+  
+  data-filter-param-name="filter-v-availability"
+>
+  <details
+    id="Facet-Details-sidebar-filter-filter-v-availability"
+    class="facets__panel"
+    
+    
+      open
+    
+  >
+    <summary class="facets__summary">
+      <span class="facets__label">Availability</span>
+
+      <div class="facets__status-wrapper">
+        
+          <facet-status-component
+            class="facets__status"
+            facet-type="list"
+            data-filter-style="vertical"
+          >
+            <span
+              
+                
+              
+              hide-when-empty
+              ref="facetStatus"
+            ></span>
+          </facet-status-component>
+        
+        <span class="svg-wrapper icon-caret icon-animated"><svg>mock_icon_icon-caret.svg</svg></span>
+      </div>
+    </summary>
+    <floating-panel-component
+      
+      class="facets__inputs facets__panel-content details-content"
+      id="facet-inputs-filter-v-availability"
+    >
+      <facet-inputs-component
+        on:change="/updateFilters"
+        id="facet-inputs-component-filter-v-availability"
+      >
+        
+        
+
+        <div
+          class="facets__inputs-wrapper"
+          ref="showMoreContent"
+        >
+          
+          <ul
+            id="filters-list-sidebar-filter-filter-v-availability"
+            class="facets__inputs-list list-unstyled"
+            
+            
+            name="Availability"
+          >
+              <li
+                data-skip-node-update="true"
+                class="
+                  facets__inputs-list-item
+                  
+                  
+                "
+                
+              >
+                
+                
+                  
+                    <div
+  class="checkbox"
+  on:pointerenter="/prefetchPage" on:pointerleave="/cancelPrefetchPage"
+>
+  <input
+    type="checkbox"
+    name="filter.v.availability"
+    value="1"
+    id="Filter-filter-v-availability-1-vertical-"
+    class="checkbox__input"
+    data-label="In stock"
+    
+    
+    
+    
+      form=""
+    
+    
+      ref="facetInputs[]"
+    
+    
+  >
+  <label
+    class="checkbox__label"
+    for="Filter-filter-v-availability-1-vertical-"
+    
+      ref=""
+    
+    role="checkbox"
+  >
+    <svg>mock_icon_icon-checkmark.svg</svg>
+    <span class="checkbox__label-text">In stock</span>
+  </label>
+</div>
+
+                  
+                
+              </li>
+              <li
+                data-skip-node-update="true"
+                class="
+                  facets__inputs-list-item
+                  
+                  
+                "
+                
+              >
+                
+                
+                  
+                    <div
+  class="checkbox"
+  on:pointerenter="/prefetchPage" on:pointerleave="/cancelPrefetchPage"
+>
+  <input
+    type="checkbox"
+    name="filter.v.availability"
+    value="0"
+    id="Filter-filter-v-availability-2-vertical-"
+    class="checkbox__input"
+    data-label="Out of stock"
+    
+    
+    
+    
+      form=""
+    
+    
+      ref="facetInputs[]"
+    
+    
+  >
+  <label
+    class="checkbox__label"
+    for="Filter-filter-v-availability-2-vertical-"
+    
+      ref=""
+    
+    role="checkbox"
+  >
+    <svg>mock_icon_icon-checkmark.svg</svg>
+    <span class="checkbox__label-text">Out of stock</span>
+  </label>
+</div>
+
+                  
+                
+              </li></ul>
+        </div>
+        
+
+        
+      </facet-inputs-component>
+    </floating-panel-component>
+  </details>
+</accordion-custom>
+
+<style>
+  .facets input:checked + label {
+    font-weight: 500;
+  }
+
+  .facets .checkbox .icon-checkmark {
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .facets .checkbox:not(.checkbox--disabled):hover .icon-checkmark {
+    border-color: rgb(var(--color-foreground-rgb) / var(--opacity-40-60));
+    background-color: rgb(var(--color-foreground-rgb) / var(--opacity-5));
+  }
+
+  /* Hover state for checked checkboxes - targeting via adjacent sibling */
+  .facets .checkbox:not(.checkbox--disabled):hover .checkbox__input:checked + .checkbox__label .icon-checkmark {
+    background-color: rgb(var(--color-foreground-rgb) / var(--opacity-85));
+  }
+
+  .facets .checkbox:not(.checkbox--disabled):hover .checkbox__label-text {
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-90));
+  }
+
+  .facets .checkbox .checkbox__label-text {
+    transition: color 0.2s ease, font-weight 0.2s ease;
+  }
+
+  /* Pill style */
+  .facets__pill-label {
+    --pill-label-padding-inline: var(--padding-xs);
+    --pill-label-border-radius: var(--style-border-radius-md);
+    --pill-label-border-width: var(--variant-picker-button-border-width);
+    --pill-label-height: var(--button-size-md);
+    --pill-label-focus-outline-color: var(--color-foreground);
+    --pill-label-color: var(--color-foreground);
+    --pill-label-color-rgb: var(--color-foreground-rgb);
+    --pill-label-background-color: var(--color-background);
+    --pill-label-background-color-rgb: var(--color-background-rgb);
+    --pill-label-border-opacity: var(--facets-low-opacity);
+
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 0 var(--pill-label-border-width) rgb(var(--pill-label-color-rgb) / var(--opacity-10-25));
+    border-radius: var(--pill-label-border-radius);
+    height: var(--pill-label-height);
+    width: 100%;
+    padding-inline: var(--pill-label-padding-inline);
+    color: rgb(var(--pill-label-color-rgb));
+    background-color: rgb(var(--pill-label-background-color-rgb));
+    cursor: pointer;
+    transition: color var(--animation-speed) var(--animation-easing),
+      background-color var(--animation-speed) var(--animation-easing);
+    outline-color: var(--pill-label-focus-outline-color);
+
+    &:hover {
+      --pill-label-border-opacity: 100%;
+    }
+  }
+
+  .facets__pill-input {
+    &:checked + .facets__pill-label {
+      --pill-label-color-rgb: var(--color-background-rgb);
+      --pill-label-background-color-rgb: var(--color-foreground-rgb);
+      --pill-label-border-opacity: 0;
+
+      font-weight: 500;
+    }
+
+    &:disabled + .facets__pill-label {
+      opacity: var(--disabled-opacity);
+      cursor: not-allowed;
+
+      &:hover {
+        --pill-label-border-opacity: var(--facets-low-opacity);
+      }
+    }
+  }
+
+  .facets__status-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .facets--drawer .facets__status-wrapper {
+    @media screen and (max-width: 749px) {
+      gap: var(--gap-3xs);
+    }
+  }
+
+  .facets--vertical .facets__status-wrapper {
+    gap: var(--gap-xs);
+  }
+
+  .facets--horizontal .facets__status-wrapper {
+    gap: 0;
+  }
+
+  .facets__pill-input:disabled + .facets__pill-label svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: var(--style-border-radius-md);
+  }
+
+  .facets__pill-label svg line {
+    stroke-width: 1.5px;
+    stroke: rgb(var(--color-foreground-rgb) / var(--facets-low-opacity));
+  }
+
+  .facets__pill-wrapper {
+    position: relative;
+  }
+
+  .facets__pill-input {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /* Swatches */
+  .facets__status--swatches {
+    display: none;
+  }
+
+  .facets__swatch-wrapper {
+    display: flex;
+  }
+
+  .facets__inputs-list--swatches .variant-option__button-label {
+    --color-variant-text: var(--color-foreground);
+  }
+
+  .facets__inputs-list--swatches {
+    --variant-picker-swatch-width: 32px;
+    --variant-picker-swatch-height: 32px;
+
+    @media screen and (min-width: 750px) {
+      --variant-picker-swatch-width: 26px;
+      --variant-picker-swatch-height: 26px;
+    }
+  }
+
+  .facets--vertical .facets__inputs-wrapper .facets__inputs-list--swatches-grid {
+    gap: var(--gap-sm);
+  }
+
+  .facets--vertical .facets__inputs-list--swatches .facets__inputs-list-item {
+    display: flex;
+  }
+
+  .facets__inputs-wrapper .facets__inputs-list--swatches-grid {
+    --columns: 2;
+
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+  }
+
+  .facets__inputs-wrapper .facets__inputs-list--swatches-grid .variant-option--swatches {
+    cursor: pointer;
+    overflow: visible;
+  }
+
+  .facets__inputs-list-item--disabled .variant-option--swatches {
+    cursor: not-allowed;
+  }
+
+  .facets__inputs-wrapper .facets__inputs-list--swatches-grid label {
+    cursor: pointer;
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  .facets__inputs-list--swatches-grid .facets__inputs-list-item--disabled label {
+    cursor: not-allowed;
+  }
+
+  .facets__inputs-list-item--disabled .variant-option__button-label {
+    cursor: not-allowed;
+  }
+
+  .facets__inputs-wrapper .facets__inputs-list--swatches-grid .variant-option__button-label--has-swatch {
+    align-items: center;
+    overflow: visible;
+    justify-content: flex-start;
+    display: flex;
+    width: 100%;
+    flex-basis: unset;
+    gap: var(--gap-sm);
+  }
+
+  .facets__inputs-wrapper .facets__inputs-list--swatches-grid .variant-option__button-label:has(:checked) {
+    color: rgb(var(--color-foreground-rgb));
+    background-color: rgb(var(--color-background-rgb));
+    font-weight: 500;
+    transition: font-weight 0.2s ease;
+  }
+
+  .facets .variant-option--swatches {
+    --options-border-radius: var(--variant-picker-swatch-radius);
+
+    width: auto;
+  }
+
+  .facets--horizontal .facets__status--swatches {
+    @media screen and (min-width: 750px) {
+      display: flex;
+    }
+  }
+
+  .facets--horizontal .sorting-filter .facets__status {
+    @media screen and (min-width: 750px) {
+      display: none;
+    }
+  }
+
+  .facets__status--swatches .swatch {
+    width: calc(var(--variant-picker-swatch-width) / 1.5);
+    height: calc(var(--variant-picker-swatch-height) / 1.5);
+  }
+
+  .facets__status--swatches .swatch + .swatch {
+    margin-left: calc(var(--variant-picker-swatch-width) / -3);
+    outline: 1px solid rgb(var(--color-background-rgb));
+  }
+
+  .variant-option--images {
+    position: relative;
+  }
+
+  .variant-option--images {
+    --image-facet-border-width: var(--variant-picker-button-border-width);
+    --image-facet-border-opacity: var(--facets-low-opacity);
+    --image-facet-border-radius: var(--style-border-radius-xs);
+
+    border-radius: var(--image-facet-border-radius);
+    box-shadow: inset 0 0 0 var(--image-facet-border-width)
+      rgb(var(--color-foreground-rgb) / var(--image-facet-border-opacity));
+
+    &:hover {
+      --image-facet-border-opacity: 100%;
+    }
+
+    &:has(input:checked) {
+      font-weight: 500;
+      transition: font-weight 0.2s ease;
+    }
+
+    &:has(input:checked):hover {
+      --image-facet-border-width: calc(var(--variant-picker-button-border-width) + 0.5px);
+    }
+
+    &:has(input:focus-visible) {
+      outline: var(--focus-outline-width) solid currentcolor;
+      outline-offset: var(--focus-outline-offset);
+    }
+  }
+
+  .facets__inputs-list-item--disabled .variant-option--images {
+    --image-facet-border-opacity: 0;
+    opacity: var(--disabled-opacity);
+    cursor: not-allowed;
+
+    &:hover {
+      --image-facet-border-opacity: 0;
+    }
+
+    img {
+      opacity: var(--disabled-opacity);
+    }
+
+    input,
+    label,
+    .facets__image-label {
+      cursor: not-allowed;
+    }
+
+    .facets__image-wrapper {
+      border: var(--style-border-width) solid rgb(var(--color-foreground-rgb) / var(--opacity-30));
+      border-radius: var(--image-facet-border-radius);
+    }
+  }
+
+  .facets__inputs-wrapper .facets__inputs-list--images {
+    display: grid;
+    grid-template-columns: repeat(var(--image-columns), 125px);
+    gap: var(--gap-sm);
+  }
+
+  .facets--drawer .facets__inputs-wrapper .facets__inputs-list--images {
+    grid-template-columns: repeat(3, 1fr);
+
+    @media screen and (min-width: 750px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .facets--vertical .facets__inputs-wrapper .facets__inputs-list--images {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .facets--drawer .facets__inputs-list--images {
+    padding-top: var(--padding-xs);
+  }
+
+  .facets__image-wrapper {
+    aspect-ratio: 1/1;
+    width: 100%;
+    padding: var(--padding-xs);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .facets__image-wrapper img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    border-radius: calc(var(--border-radius) / 2);
+  }
+
+  /* Position disabled-svg */
+  .variant-option--images svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    stroke-width: var(--border-width);
+    stroke: rgb(var(--color-foreground-rgb) / var(--opacity-5));
+  }
+
+  /* Position label text and handle overflow */
+  .facets__inputs-list-item,
+  .variant-option--images {
+    min-width: 0;
+  }
+
+  .facets__image-label {
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-block-end: var(--padding-xs);
+    cursor: pointer;
+  }
+
+  .facets__inputs-list-item--disabled .facets__image-label {
+    cursor: not-allowed;
+  }
+
+  .facets__inputs-list-item:not(.facets__inputs-list-item--disabled) .variant-option__button-label:hover {
+    font-weight: 500;
+  }
+
+  .facets__inputs-list-item:not(.facets__inputs-list-item--disabled) .facets__image-label:hover {
+    font-weight: 500;
+  }
+</style>
+<accordion-custom
+  class="facets__item"
+  
+
+  
+    open
+    open-by-default-on-mobile
+    open-by-default-on-desktop
+  
+>
+  <details
+    class="facets__panel"
+    
+    
+      open
+    
+  >
+    <summary class="facets__summary">
+      <span class="facets__label">Price</span>
+      <facet-status-component class="facets__status">
+        <template ref="moneyFormat"></template>
+
+        <span
+          class="hide-when-empty"
+          ref="facetStatus"
+          data-currency=""
+          data-range-max="100"
+        >0–100</span>
+      </facet-status-component>
+      <span class="svg-wrapper icon-caret icon-animated"><svg>mock_icon_icon-caret.svg</svg></span>
+    </summary>
+    <floating-panel-component
+      
+      class="facets__panel-content details-content"
+    >
+      
+      
+
+      <price-facet-component
+        class="price-facet"
+        id="facet-inputs-filter-v-price"
+        on:change="/updatePriceFilterAndResults"
+      >
+        <div class="price-facet__inputs-wrapper facets__inputs-wrapper facets__inputs-wrapper--row">
+          <div class="field price-facet__field">
+            <input
+              class="field__input price-facet__input"
+              name=""
+              id="Price-GTE"value="0"type="text"
+              inputmode="decimal"
+              placeholder="0"
+              data-min="0"
+              data-max="100"
+              ref="minInput"
+              autocomplete="off"
+            >
+            <label
+              class="field__label price-facet__label"
+              for="Price-GTE"
+            >
+              
+            </label>
+          </div>
+
+          <div class="price-facet__separator">Separator</div>
+
+          <div class="field price-facet__field">
+            <input
+              class="field__input price-facet__input"
+              name=""
+              id="Price-LTE"value="100"type="text"
+              inputmode="decimal"
+              placeholder="100"
+              data-min="0"
+              data-max="100"
+              ref="maxInput"
+              autocomplete="off"
+            >
+            <label
+              class="field__label price-facet__label"
+              for="Price-LTE"
+            >
+              
+            </label>
+          </div>
+        </div>
+
+        <div class="price-facet__highest-price">Price_filter_html
+        </div>
+
+        
+
+        
+      </price-facet-component>
+    </floating-panel-component>
+  </details>
+</accordion-custom>
+
+<style>
+  /* Price filter */
+  .price-facet {
+    container-type: inline-size;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .facets__inputs-wrapper.price-facet__inputs-wrapper {
+    flex-wrap: nowrap;
+  }
+
+  .price-facet__field {
+    width: 50%;
+    flex-grow: 0;
+  }
+
+  @container (max-width: 199px) {
+    .facets__inputs-wrapper.price-facet__inputs-wrapper {
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .price-facet__inputs-wrapper .price-facet__field {
+      width: 100%;
+    }
+  }
+
+  .facets .facets__inputs-wrapper.price-facet__inputs-wrapper {
+    padding: var(--style-border-width-inputs);
+    gap: calc(var(--gap-sm) + (var(--style-border-width-inputs) * 2));
+  }
+
+  .facets--horizontal .facets__panel-content:has(.price-facet) {
+    min-width: 360px;
+  }
+
+  .facets--horizontal .facets__inputs-wrapper.price-facet__inputs-wrapper {
+    @media screen and (min-width: 750px) {
+      padding: calc(var(--padding-md) + var(--style-border-width-inputs));
+    }
+  }
+
+  .price-facet__input {
+    width: 100%;
+    text-align: right;
+    padding-left: calc(2.5 * var(--input-padding-x));
+  }
+
+  .price-facet__input::placeholder {
+    color: var(--facets-input-label-color);
+  }
+
+  .price-facet__separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-paragraph--size);
+  }
+
+  .price-facet__highest-price {
+    padding: var(--padding-xs) 0 var(--padding-sm);
+  }
+
+  .facets--horizontal .price-facet__highest-price {
+    padding: 0 var(--padding-md) var(--padding-xs);
+  }
+
+  .field__label.price-facet__label {
+    top: 0;
+    left: 0;
+    color: var(--facets-input-label-color);
+    padding: var(--input-padding-y) var(--input-padding-x);
+    transform: none;
+  }
+</style>
+</div><div class="facets__footer" style="margin-top: 1rem;">
+          <noscript>
+            <button type="submit" class="button button--secondary">Filter</button>
+          </noscript>
+        </div>
+      </form>
+    </facets-form-component>
+  </div>
+</div>
+
+  <hr>
+  <h2>Debug Info</h2>
+  <p>Errors: []</p>
+</body>
+</html>
