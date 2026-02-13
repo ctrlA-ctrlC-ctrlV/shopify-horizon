@@ -23,7 +23,12 @@
 >
   <div class="facets facets--vertical">
     <facets-form-component class="facets__form-wrapper" section-id="{{ section.id }}" form-style="vertical">
-      <form id="FacetFiltersForm--{{ section.id }}-sidebar" class="facets__form" action="{{ results_url }}">
+      <form
+        id="FacetFiltersForm--{{ section.id }}-sidebar"
+        class="facets__form"
+        action="{{ results_url }}"
+        ref="facetsForm"
+      >
         {%- if results.filters != empty -%}
           <div class="facets__wrapper">
             {%- for filter in results.filters -%}
