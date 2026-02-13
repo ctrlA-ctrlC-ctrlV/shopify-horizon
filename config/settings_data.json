@@ -80,10 +80,12 @@
     "blocks": {
       "6810584612362904079": {
         "type": "shopify://apps/findter-custom-filter-search/blocks/search-filters-core/bf706e6d-709f-4687-a2e2-1fbe1b007cc7",
-        "disabled": false,
+        "disabled": true,
         "settings": {
           "search_input_selector": "[name=q]",
           "link_no_results": "shopify://collections/all",
+          "collection_grid_selector": "",
+          "search_result_selector": "",
           "custom_css": ""
         }
       }
