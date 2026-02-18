@@ -355,35 +355,6 @@
       "expired": "Expired"
     }
   },
-  "placeholders": {
-    "password": "Password",
-    "search": "Search",
-    "product_title": "Product title",
-    "collection_title": "Collection title",
-    "blog_posts": "Blog Posts",
-    "blog_post_title": "Title",
-    "blog_post_author": "Author",
-    "blog_post_date": "Date",
-    "blog_post_description": "An excerpt of your blog post's content"
-  },
-  "products": {
-    "product": {
-      "add_to_cart": "Add to cart",
-      "adding_to_cart": "Adding...",
-      "added_to_cart": "Added to cart",
-      "add_to_cart_error": "Error adding to cart",
-      "quantity_error_max": "This item has a maximum of {{ maximum }}",
-      "sold_out": "Sold out",
-      "unavailable": "Unavailable",
-      "quantity": "Quantity",
-      "quantity_increments": "Increments of {{ increment }}",
-      "quantity_minimum": "Minimum of {{ minimum }}",
-      "quantity_maximum": "Maximum of {{ maximum }}",
-      "in_cart": "in cart",
-      "default_title": "Default Title",
-      "sticky_add_to_cart": "Quick add to cart bar"
-    }
-  },
   "pagefly": {
     "products": {
       "product": {
@@ -427,6 +398,35 @@
       "signup_form_email_label": "Email",
       "signup_form_success": "We will send you an email right before we open!",
       "password_link": "Enter using password"
+    }
+  },
+  "placeholders": {
+    "password": "Password",
+    "search": "Search",
+    "product_title": "Product title",
+    "collection_title": "Collection title",
+    "blog_posts": "Blog Posts",
+    "blog_post_title": "Title",
+    "blog_post_author": "Author",
+    "blog_post_date": "Date",
+    "blog_post_description": "An excerpt of your blog post's content"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "adding_to_cart": "Adding...",
+      "added_to_cart": "Added to cart",
+      "add_to_cart_error": "Error adding to cart",
+      "quantity_error_max": "This item has a maximum of {{ maximum }}",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "quantity_increments": "Increments of {{ increment }}",
+      "quantity_minimum": "Minimum of {{ minimum }}",
+      "quantity_maximum": "Maximum of {{ maximum }}",
+      "in_cart": "in cart",
+      "default_title": "Default Title",
+      "sticky_add_to_cart": "Quick add to cart bar"
     }
   }
 }

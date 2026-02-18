@@ -18,7 +18,7 @@
         "media-gallery": {
           "blocks": {},
           "settings": {
-            "aspect_ratio": "1/1.25",
+            "aspect_ratio": "adapt",
             "constrain_to_viewport": true,
             "extend_media": true,
             "hide_variants": true,

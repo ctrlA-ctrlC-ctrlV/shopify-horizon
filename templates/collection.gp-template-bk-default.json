@@ -10,9 +10,40 @@
 {
   "order": [
     "section",
+    "1770890824bde859cc",
     "main"
   ],
   "sections": {
+    "1770890824bde859cc": {
+      "settings": {
+        "align_baseline": false,
+        "background_image_position": "cover",
+        "background_media": "none",
+        "border": "none",
+        "border_opacity": 100,
+        "border_radius": 0,
+        "border_width": 1,
+        "color_scheme": "",
+        "content_direction": "column",
+        "gap": 12,
+        "gradient_direction": "to top",
+        "horizontal_alignment": "flex-start",
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "padding-block-end": 0,
+        "padding-block-start": 0,
+        "section_height": "",
+        "section_height_custom": 50,
+        "section_width": "page-width",
+        "toggle_overlay": false,
+        "vertical_alignment": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "vertical_on_mobile": true,
+        "video_position": "cover"
+      },
+      "type": "_blocks"
+    },
     "main": {
       "blocks": {
         "filters": {
@@ -129,6 +160,7 @@
         "color_scheme": "scheme-1",
         "columns_gap_horizontal": 16,
         "columns_gap_vertical": 24,
+        "enable_infinite_scroll": true,
         "full_width_on_mobile": true,
         "layout_type": "grid",
         "mobile_product_card_size": "small",
@@ -137,7 +169,8 @@
         "padding-inline-end": 0,
         "padding-inline-start": 0,
         "product_card_size": "medium",
-        "product_grid_width": "centered"
+        "product_grid_width": "centered",
+        "products_per_page": 24
       },
       "type": "main-collection"
     },
